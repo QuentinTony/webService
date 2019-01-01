@@ -1,5 +1,6 @@
 package fr.adaming.service;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -41,18 +42,22 @@ public class BanqueServiceImpl implements IBanqueService {
 		
 		// transformation de la date 
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		Date date1=  bVerif.getDateExperiation();
-		Date date2=b.getDateExperiation();
+		String daate=sdf.format(bVerif.getDateExperiation());
+		String daate1=sdf.format(b.getDateExperiation());
 		
-		long d1=bVerif.getDateExperiation().getTime();
-		long d2=b.getDateExperiation().getTime();
+		
+		long d1=bVerif.getDateExperiation().getMonth();
+		long d1bis=b.getDateExperiation().getMonth();
+		long d2=bVerif.getDateExperiation().getYear();
+		long d2bis=bVerif.getDateExperiation().getYear();
 		
 		System.out.println("d1 = "+d1);
+		System.out.println("d1bis = "+d1bis);
 		System.out.println("d2 = "+d2);
+		System.out.println("d2bis = "+d2bis);
 		
-		int indice= date1.compareTo(date2);
-		System.out.println(indice);
-		if (bVerif.getNumeroCarte() == b.getNumeroCarte()
+
+		if (bVerif.getNumeroCarte() == b.getNumeroCarte() && d1==d1bis && d2==d2bis
 				&& bVerif.getCleSecurite() == b.getCleSecurite() && bVerif.getSolde() - somme >= 0) {
 			bVerif.setSolde(bVerif.getSolde()-somme);
 			baDao.updateCompte(bVerif);
