@@ -9,5 +9,9 @@ public interface IBanqueService {
 	public Banque getCompte(long id);
 	
 	public int updateCompte(long id);
+	
+	public Banque verif(Banque b);
+	
+	
 
 }

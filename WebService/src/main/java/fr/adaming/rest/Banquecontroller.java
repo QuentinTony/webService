@@ -43,5 +43,10 @@ public class Banquecontroller {
 		return baService.virement(b, somme);
 	}
 	
+	@RequestMapping(value="/verif",method=RequestMethod.POST,produces="application/json",consumes="application/json")
+	public Banque verif(@RequestBody Banque b) {
+		return baService.verif(b);
+	}
+	
 
 }
